@@ -10,9 +10,6 @@
 
 + (id)viewNamed:(NSString *)viewName owner:(id)owner;
 
-+ (UIBarButtonItem *)barButtonItemWithImageNamed:(NSString *)imageName
-                                          target:(id)target
-                                          action:(SEL)action;
 + (NSDateFormatter *)rfc822Formatter;
 
 @end

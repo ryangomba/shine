@@ -11,7 +11,6 @@
 #import "CurrentReport.h"
 #import "DailyReport.h"
 #import "HourlyReport.h"
-#import "JSONKit.h"
 
 @implementation WeatherController
 
@@ -21,46 +20,42 @@
 {
     self = [super init];
     if (self) {
-        receivedData = [NSMutableData data];
+        requestsInProgress = [NSMutableArray array];
     }
     return self;
 }
 
-- (void)getWeather
+- (void)getWeatherForLocation:(Location *)location
 {
-    NSString *url = @"http://api.wunderground.com/api/9b046c5a8b7aa1b5/conditions/hourly/forecast10day/q/12533.json";
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    NSLog(@"Sending the request...");
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [conn start];
+    NSString *url = [NSString stringWithFormat:@"http://api.wunderground.com/api/9b046c5a8b7aa1b5/conditions/hourly/forecast10day/q/%@,%@.json", location.latitude, location.longitude];
+    NSLog(@"%@", url);
+    HTTPConnection *conn = [[HTTPConnection alloc] init];
+    [requestsInProgress addObject:conn];
+    conn.delegate = self;
+    [conn startWithURL:[NSURL URLWithString:url] userInfo:location];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)connection:(HTTPConnection *)connection requestDidSucceed:(NSDictionary *)response userInfo:(id)userInfo
 {
-    NSLog(@"response");
-    [receivedData setLength:0];
+    [requestsInProgress removeObject:connection];
+    [self parseWeather:response forLocation:(Location *)userInfo];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+- (void)connection:(HTTPConnection *)connection requestDidFail:(NSError *)error userInfo:(id)userInfo
 {
-    NSLog(@"data");
-    [receivedData appendData:data];
+    [requestsInProgress removeObject:connection];
+    [self.delegate didRecieveWeatherError:error forLocation:(Location *)userInfo];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+- (void)cancelAllRequests
 {
-    NSLog(@"finished");
-    JSONDecoder *decoder = [JSONDecoder decoder];
-    NSDictionary *content = [decoder objectWithData:receivedData];
-    if (content) {
-        NSLog(@"GOT IT");
-        [self parseWeather:content];
-    } else {
-        NSLog(@"Error deconding JSON");
-    }
+    [requestsInProgress enumerateObjectsUsingBlock:^(HTTPConnection *conn, NSUInteger idx, BOOL *stop) {
+        [requestsInProgress removeObjectAtIndex:idx];
+        [conn cancel];
+    }];
 }
 
-- (void)parseWeather:(NSDictionary *)weather
+- (void)parseWeather:(NSDictionary *)weather forLocation:(Location *)location
 {
     NSLog(@"Parsing");
     
@@ -68,43 +63,19 @@
     NSDictionary *response = [weather objectForKey:@"response"];
     NSLog(@"%@", response);
     
-    // current
-    NSDictionary *currentForecast = [weather objectForKey:@"current_observation"];
-    CurrentReport *current = [CurrentReport report:currentForecast];
-    
-    // location
-    NSDictionary *locationDict = [currentForecast objectForKey:@"display_location"];
-    Location *location = [Location locationFromWU:locationDict];
-    
-    // daily
-    NSDictionary *dailyForecasts = [weather objectForKey:@"forecast"];
-    NSArray *dailyForecast = [[dailyForecasts objectForKey:@"simpleforecast"] objectForKey:@"forecastday"];
-    //NSArray *dailyTextForecast = [[dailyForecasts objectForKey:@"txt_forecast"] objectForKey:@"forecastday"];
-    int numDays = dailyForecast.count;
-    NSMutableArray *daily = [NSMutableArray arrayWithCapacity:numDays];
-    for (int i=0; i<numDays; i++) {
-        [daily addObject:[DailyReport report:[dailyForecast objectAtIndex:i]]];
+    // error?
+    NSDictionary *errorDict = [response objectForKey:@"error"];
+    if (errorDict) {
+        NSInteger errorCode = 500;
+        NSString *errorString = [[response objectForKey:@"error"] objectForKey:@"type"];
+        if ([errorString isEqual:@"querynotfound"]) errorCode = 404;
+        NSError *error = [NSError errorWithDomain:errorString code:errorCode userInfo:errorDict];
+        [self.delegate didRecieveWeatherError:error forLocation:location];
+        return;
     }
     
-    // hourly
-    NSArray *hourlyForecast = [weather objectForKey:@"hourly_forecast"];
-    NSMutableArray *hourly = [NSMutableArray array];
-    NSString *lastDay = @"Bestday";
-    for (int i=0; i<96; i++) {
-        HourlyReport *hour = [HourlyReport report:[hourlyForecast objectAtIndex:i]];
-        if (![hour.day isEqual:lastDay]) {
-            [hourly addObject:[NSMutableArray array]];
-            lastDay = hour.day;
-        }
-        [[hourly lastObject] addObject:hour];
-    }
-    
-    WeatherReport *report = [[WeatherReport alloc] init];
-    report.location = location;
-    report.current = current;
-    report.days = daily;
-    report.hours = hourly;
-    [self.delegate didRecieveWeather:report];
+    WeatherReport *report = [WeatherReport report:weather forLocation:location];
+    [self.delegate didRecieveWeather:report forLocation:location];
 }
 
 @end

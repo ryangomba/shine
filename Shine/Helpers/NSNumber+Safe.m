@@ -47,7 +47,7 @@
 - (NSString *)hourValue
 {
     int hour = [self intValue];
-    BOOL miitary = [[[NSUserDefaults standardUserDefaults] objectForKey:@"use24hr"] boolValue];
+    BOOL miitary = [ShineDefaults shared].militaryClock;
     if (miitary) {
         return [NSString stringWithFormat:@"%02d:00", hour];
     }
@@ -59,7 +59,7 @@
 
 - (NSNumber *)checkTempUnits
 {
-    BOOL metric = [[[NSUserDefaults standardUserDefaults] objectForKey:@"useMetric"] boolValue];
+    BOOL metric = [ShineDefaults shared].metricTemp;
     if (metric) {
         float celcius = ([self floatValue] - 32.0) * 5.0 / 9.0;
         return [NSNumber numberWithFloat:celcius];
@@ -69,7 +69,7 @@
 
 - (NSNumber *)checkWindUnits
 {
-    BOOL metric = [[[NSUserDefaults standardUserDefaults] objectForKey:@"useMetricForWind"] boolValue];
+    BOOL metric = [ShineDefaults shared].metricWind;
     if (metric) {
         float kph = [self floatValue] * 1.609344;
         return [NSNumber numberWithFloat:kph];

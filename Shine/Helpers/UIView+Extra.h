@@ -8,6 +8,12 @@
 
 @interface UIView (Extra)
 
+- (void)resizeWidth:(CGFloat)width
+             height:(CGFloat)height;
+
+- (void)moveToX:(CGFloat)x
+              y:(CGFloat)y;
+
 - (void)shiftRight:(CGFloat)x
               down:(CGFloat)y;
 

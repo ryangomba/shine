@@ -15,19 +15,6 @@
     return [[[NSBundle mainBundle] loadNibNamed:viewName owner:owner options:nil] objectAtIndex:0];
 }
 
-+ (UIBarButtonItem *)barButtonItemWithImageNamed:(NSString *)imageName
-                                          target:(id)target
-                                          action:(SEL)action {
-    UIImage *image = [UIImage imageNamed:imageName];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
-    [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:[imageName stringByAppendingString:@"-down"]] forState:UIControlStateHighlighted];
-    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    return barButtonItem;
-}
-
 + (NSDateFormatter *)rfc822Formatter {
     static NSDateFormatter *formatter = nil;
     if (formatter == nil) {

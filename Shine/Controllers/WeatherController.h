@@ -6,19 +6,23 @@
 //  Copyright (c) 2012 AppThat. All rights reserved.
 //
 
+#import "HTTPConnection.h"
 #import "WeatherReport.h"
 
 @protocol WeatherControllerDelegate
-- (void)didRecieveWeather:(WeatherReport *)weather;
+- (void)didRecieveWeather:(WeatherReport *)weather forLocation:(Location *)location;
+- (void)didRecieveWeatherError:(NSError *)error forLocation:(Location *)location;
 @end
 
-@interface WeatherController : NSObject <NSURLConnectionDataDelegate> {
-    NSMutableData *receivedData;
+@interface WeatherController : NSObject <HTTPConnectionDelegate> {
+    NSMutableArray *requestsInProgress;
 }
 
 @property (weak, nonatomic) id <WeatherControllerDelegate> delegate;
 
-- (void)getWeather;
-- (void)parseWeather:(NSDictionary *)weather;
+- (void)getWeatherForLocation:(Location *)location;
+- (void)parseWeather:(NSDictionary *)weather forLocation:(Location *)location;
+
+- (void)cancelAllRequests;
 
 @end

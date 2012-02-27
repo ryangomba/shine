@@ -6,10 +6,12 @@
 //  Copyright (c) 2012 AppThat. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CLController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+- (void)createAndCheckDatabase:(NSString *)databaseName;
 
 @end

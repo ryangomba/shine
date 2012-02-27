@@ -11,6 +11,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+    #import "Singleton.h"
+    #import "ShineDefaults.h"
+    #import "Data.h"
     #import "Constructor.h"
     #import "NSNumber+Safe.h"
     #import "UIView+Extra.h"

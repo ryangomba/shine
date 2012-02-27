@@ -6,18 +6,16 @@
 //  Copyright 2011 AppThat. All rights reserved.
 //
 
+#import "HTTPConnection.h"
 #import "Location.h"
-#import "JSONKit.h"
 
-@protocol GeocoderDelegate
-- (void)didGeocodeLocation:(Location *)location;
+@protocol ShineGeocoderDelegate
+- (void)geocoderReturnedLocation:(Location *)location;
 @end
 
-@interface Geocoder : NSObject <NSURLConnectionDataDelegate> {
-    NSMutableData *receivedData;
-}
+@interface Geocoder : NSObject <HTTPConnectionDelegate>
 
-@property (weak, nonatomic) id <GeocoderDelegate> delegate;
+@property (weak, nonatomic) id <ShineGeocoderDelegate> delegate;
 
 - (void)locationForSearchString:(NSString *)address;
 

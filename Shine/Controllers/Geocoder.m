@@ -12,15 +12,6 @@
 
 @synthesize delegate;
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        receivedData = [NSMutableData data];
-    }
-    return self;
-}
-
 # pragma mark -
 # pragma mark Actions
 
@@ -46,44 +37,32 @@
 - (void)locationForURL:(NSURL *)url
 {
     NSLog(@"%@", url);
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSLog(@"Sending the geocode request...");
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [conn start];
+    HTTPConnection *conn = [[HTTPConnection alloc] init];
+    conn.delegate = self;
+    [conn startWithURL:url userInfo:nil];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)connection:(HTTPConnection *)connection requestDidSucceed:(NSDictionary *)response userInfo:(id)userInfo
 {
-    NSLog(@"response");
-    [receivedData setLength:0];
+    NSLog(@"Geocode request succeeded");
+    [self parseResponse:response];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+- (void)connection:(HTTPConnection *)connection requestDidFail:(NSError *)error userInfo:(id)userInfo
 {
-    NSLog(@"data");
-    [receivedData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSLog(@"finished");
-    JSONDecoder *decoder = [JSONDecoder decoder];
-    NSDictionary *content = [decoder objectWithData:receivedData];
-    if (content) {
-        NSLog(@"GOT IT");
-        [self parseResponse:content];
-    } else {
-        NSLog(@"Error deconding JSON");
-    }
+    NSLog(@"Geocode request failed");
+    [self.delegate geocoderReturnedLocation:nil];
 }
 
 # pragma mark -
 # pragma mark Parser
 
 - (void)parseResponse:(NSDictionary *)response
-{    
+{
+    NSLog(@"Parsing");
     NSArray *results = [response objectForKey:@"results"];
-    if (results.count == 0) [self.delegate didGeocodeLocation:nil];
+    if (results.count == 0) [self.delegate geocoderReturnedLocation:nil];
+    else NSLog(@"got a result");
     
     NSDictionary *result = [results objectAtIndex:0];
     NSDictionary *coordinates = [[result objectForKey:@"geometry"] objectForKey:@"location"];
@@ -96,7 +75,7 @@
     [components enumerateObjectsUsingBlock:^(NSDictionary *comp, NSUInteger idx, BOOL *stop) {
         NSArray *types = [comp objectForKey:@"types"];
         if ([types containsObject:@"locality"]) {
-            city = [comp objectForKey:@"short_name"];
+            city = [comp objectForKey:@"long_name"];
         } else if ([types containsObject:@"administrative_area_level_1"]) {
             state = [comp objectForKey:@"short_name"];
         } else if ([types containsObject:@"country"]) {
@@ -108,7 +87,7 @@
                                             country:country
                                            latitude:lat
                                           longitude:lon];
-    [self.delegate didGeocodeLocation:location];
+    [self.delegate geocoderReturnedLocation:location];
 }
 
 @end
