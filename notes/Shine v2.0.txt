@@ -1,0 +1,17 @@
+2200
+-100
+-1500
+---
+600
+
+
+
+- FULL INTERNATIONAL SUPPORT
+- Swipe to dismiss info screens
+- Fewer forecast contradictions
+- Small bug fixes for iOS 5 Beta
+
+Coming soon:
+
+- Animated location switching
+- Additional weather metrics

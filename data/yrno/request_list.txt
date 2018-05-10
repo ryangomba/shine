@@ -1,0 +1,75 @@
+--- done
+
+python ~/yrno/scripts/yrno_bulkdl.py 1 1 100000 10
+python ~/yrno/scripts/yrno_bulkdl.py 2 100001 200000 10
+python ~/yrno/scripts/yrno_bulkdl.py 3 200001 300000 10
+python ~/yrno/scripts/yrno_bulkdl.py 4 300001 400000 10
+python ~/yrno/scripts/yrno_bulkdl.py 5 400001 500000 10
+
+python ~/yrno/scripts/yrno_bulkdl.py 6 500001 600000 10
+python ~/yrno/scripts/yrno_bulkdl.py 7 600001 700000 10
+python ~/yrno/scripts/yrno_bulkdl.py 8 700001 800000 10
+python ~/yrno/scripts/yrno_bulkdl.py 9 800001 900000 10
+python ~/yrno/scripts/yrno_bulkdl.py 10 900001 1000000 10
+
+python ~/yrno/scripts/yrno_bulkdl.py 11 1000001 1100000 10
+python ~/yrno/scripts/yrno_bulkdl.py 12 1100001 1200000 10
+python ~/yrno/scripts/yrno_bulkdl.py 13 1200001 1300000 10
+python ~/yrno/scripts/yrno_bulkdl.py 14 1300001 1400000 10
+python ~/yrno/scripts/yrno_bulkdl.py 15 1400001 1500000 10
+
+python ~/yrno/scripts/yrno_bulkdl.py 16 1504874 1600000 10
+python ~/yrno/scripts/yrno_bulkdl.py 17 1600001 1700000 10
+python ~/yrno/scripts/yrno_bulkdl.py 18 1704471 1800000 10
+
+python ~/yrno/scripts/yrno_bulkdl.py 19 1887106 1900000 2
+python ~/yrno/scripts/yrno_bulkdl.py 20 1979601 2000000 2
+python ~/yrno/scripts/yrno_bulkdl.py 21 2003761 2100000 8
+python ~/yrno/scripts/yrno_bulkdl.py 22 2103811 2200000 8
+python ~/yrno/scripts/yrno_bulkdl.py 23 2203571 2300000 8
+python ~/yrno/scripts/yrno_bulkdl.py 24 2301313 2400000 8
+python ~/yrno/scripts/yrno_bulkdl.py 25 2403901 2500000 8
+
+python ~/yrno/scripts/yrno_bulkdl.py 26 2504581 2600000 10
+python ~/yrno/scripts/yrno_bulkdl.py 27 2604301 2700000 10
+python ~/yrno/scripts/yrno_bulkdl.py 28 2704051 2800000 10
+python ~/yrno/scripts/yrno_bulkdl.py 29 2804441 2900000 10
+python ~/yrno/scripts/yrno_bulkdl.py 30 2900001 3000000 10
+
+python ~/yrno/scripts/yrno_bulkdl.py 31 3004501 3100000 10
+python ~/yrno/scripts/yrno_bulkdl.py 32 3100001 3200000 10
+python ~/yrno/scripts/yrno_bulkdl.py 33 3204221 3300000 10
+python ~/yrno/scripts/yrno_bulkdl.py 34 3300001 3400000 10
+python ~/yrno/scripts/yrno_bulkdl.py 35 3404531 3500000 10
+
+python ~/yrno/scripts/yrno_bulkdl.py 36 3500001 3600000 10
+python ~/yrno/scripts/yrno_bulkdl.py 37 3652751 3700000 10
+python ~/yrno/scripts/yrno_bulkdl.py 38 3787376 3800000 10
+python ~/yrno/scripts/yrno_bulkdl.py 39 3862161 3900000 10
+python ~/yrno/scripts/yrno_bulkdl.py 40 3900001 4000000 10
+
+python ~/yrno/scripts/yrno_bulkdl.py 41 4000001 4100000 10
+python ~/yrno/scripts/yrno_bulkdl.py 42 4100001 4200000 10
+python ~/yrno/scripts/yrno_bulkdl.py 43 4200001 4300000 10
+python ~/yrno/scripts/yrno_bulkdl.py 44 4300001 4400000 10
+python ~/yrno/scripts/yrno_bulkdl.py 45 4400001 4500000 10
+
+python ~/yrno/scripts/yrno_bulkdl.py 46 4500001 4600000 10
+python ~/yrno/scripts/yrno_bulkdl.py 47 4600001 4700000 10
+python ~/yrno/scripts/yrno_bulkdl.py 48 4700001 4800000 10
+python ~/yrno/scripts/yrno_bulkdl.py 49 4800001 4900000 10
+python ~/yrno/scripts/yrno_bulkdl.py 50 4900001 5000000 10
+
+python ~/yrno/scripts/yrno_bulkdl.py 51 5000001 5500000 15
+python ~/yrno/scripts/yrno_bulkdl.py 56 5500001 6000000 15
+python ~/yrno/scripts/yrno_bulkdl.py 61 6000001 6500000 15
+
+--- todo
+
+python ~/yrno/scripts/yrno_bulkdl.py 66 6500001 7000000 14
+python ~/yrno/scripts/yrno_bulkdl.py 71 7000001 7500000 14
+python ~/yrno/scripts/yrno_bulkdl.py 76 7500001 8000000 14
+
+--- done
+
+python ~/yrno/scripts/yrno_bulkdl.py 81 8000001 8220188 5

@@ -1,0 +1,31 @@
+Shine keeps weather simple. Quickly discover what you need to know and nothing more. Readable, accurate, fast, and beautifully designed, Shine aims to be your daily weather app.
+
+- Swipe across for the weekly forecast;
+- Pull up for hourly predictions.
+
+It’s that easy.
+
+WHY SHINE?
+- Speed. With 36-hour weather forecasts powered by SimpleGeo, Shine rapidly populates weather data.
+- Accuracy. Using data from the National Weather service, Shine displays accurate predictions out to 7 days.
+- Beauty. Sporting a custom interface designed for ultimate readability, Shine puts other weather apps to shame.
+
+WEATHER DATA
+Current conditions, temperature & wind speed
+7-Day Forecast: conditions, high/low temperatures & chance of precipitation
+72-Hour Forecast (in 3-hour increments): conditions, temperature, chance of precipitation & wind speed
+
+FEATURES
+Tap a single button to view the weather forecast for your current location
+Manage a list of saved locations; quickly swipe to switch between them
+
+PREFERENCES
+Choose between US & Metric units
+Show times in either 12 or 24-hour format
+
+COMING (VERY!) SOON
+Text forecasts
+Every-hour forecasts
+Severe weather warnings
+
+Suggestions? Let us know! Send a note to support@appthat.com

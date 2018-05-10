@@ -1,0 +1,38 @@
+Instead of waiting around for Apple to approve Shine 1.1, we decided to resubmit our binary and give our fine users an even slicker update. In addition to those items listed in the previous post, here’s what’s new:
+
+LOCATION NAMES
+Shine 1.0 assigned names to locations based on metropolitan area. Hence places like Canton, MA were labeled as Boston, MA even though weather data would come from a Canton weather station. Shine 1.1 improves location nomenclature dramatically.
+
+INTERFACE
+Automatically return to the weather view after a location change
+Metric wind speed is now displayed as km/h
+Settings icon has been standardized
+Improved error alerts
+New app icon
+
+*** A note about international support: Currently, Shine gathers extended weather data from the National Weather Service (US only). However, we plan to introduce full international support within the next few weeks. Stay tuned!
+
+---
+
+This is an update intended to address small bugs and user nits. Stay tuned for feature additions; they’re near on the horizon.
+
+LOCATION SWITCHING
+Arrows on location bar now act as buttons
+Switch between locations without delay
+
+INTERFACE
+Dorky “TOMORW” handle has been replaced with the actual day name
+Tapping the status bar now scrolls to top
+
+LOCATION SERVICES
+“Current Location” is now disabled when location services are off
+
+BUG SQUASHES
+Error message will not display after a good request
+
+------------------------------
+
+PLANNED
+Every-hour forecasts
+Severe weather warnings
+Full international support?!

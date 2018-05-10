@@ -1,0 +1,30 @@
+WEATHER
+Every-hour forecasts
+Hourly forecasts now begin at 5AM
+Forecast reconciliation (if two weather services disagree, we work to determine and use the more accurate information)
+Chance of precipitation now displayed in 5% increments
+Upon failed request, one more attempt is made automatically
+Better GPS location handling! (no caching)
+
+UI
+Manual editing mode with location reordering
+Hourly forecast view now uses nighttime icons
+Better location switching (if a saved location matches your current location, only your current location will be displayed)
+Clock setting (12/24 hour) is now automatically detected
+Arrows are hidden if no locations are saved
+In the hourly view, “Tomorrow” has been replaced with the actual day name, as was previously done for the daily forecast
+Metric preferences for temperature & wind speed are now separated
+Location deletions now animate
+Version number now displayed on info screen
+Various icon enhancements
+Newly designed button states
+
+FIXES
+Bug squash: hourly forecasts occasionally became inaccurate after 48 hours
+Better handling of UI when a call is in progress
+“Tonight” period no longer displays a sun icon
+Even better location naming
+More accurate forecasts
+
+STILL TO COME
+International support: We’re working hard to bring full international forecasts to Shine, but we’re unhappy with the speed of the APIs we wish to use. Don’t fear - we’re currently building out our own caching system so that when international support arrives, it will be FAST.
