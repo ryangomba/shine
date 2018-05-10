@@ -1,0 +1,2 @@
+curl -X DELETE localhost:3000/badges/3cf231839f4278d94b33abf2f6ecf858463c8f4beee8d2914a1bc390379f0595 &&
+curl -H "Content-Type:application/json" -H "Accept:application/json" -d '{"badge": {"ua_id": "3cf231839f4278d94b33abf2f6ecf858463c8f4beee8d2914a1bc390379f0595", "latitude":"37.75", "longitude":"-122.25"}}' localhost:3000/badges
